@@ -66,6 +66,31 @@ function Tree(array) {
         return null;
     }
 
+    function insert(value) {
+        const root = getRoot();
+        let currentNode = root;
+
+        while (currentNode !== null) {
+            if (value < currentNode.data) {
+                if (currentNode.left === null) {
+                    currentNode.left = Node(value);
+                    break;
+                } else {
+                    currentNode = currentNode.left;
+                    continue;
+                }
+            } else if (value > currentNode.data) {
+                if (currentNode.right === null) {
+                    currentNode.right = Node(value);
+                    break;
+                } else {
+                    currentNode = currentNode.right;
+                    continue;
+                }
+            }
+        }
+    }
+
     function prettyPrint(node, prefix = "", isLeft = true) {
         if (node === null) {
             return;
@@ -91,5 +116,6 @@ function Tree(array) {
         prettyPrint,
         getRoot,
         find,
+        insert,
     };
 }
