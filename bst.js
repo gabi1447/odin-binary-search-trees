@@ -47,6 +47,25 @@ function Tree(array) {
         return root;
     }
 
+    function find(value) {
+        const root = getRoot();
+        let currentNode = root;
+
+        while (currentNode !== null) {
+            if (currentNode.data === value) {
+                return currentNode;
+            } else if (value < currentNode.data) {
+                currentNode = currentNode.left;
+                continue;
+            } else if (value > currentNode.data) {
+                currentNode = currentNode.right;
+                continue;
+            }
+        }
+
+        return null;
+    }
+
     function prettyPrint(node, prefix = "", isLeft = true) {
         if (node === null) {
             return;
@@ -71,5 +90,6 @@ function Tree(array) {
     return {
         prettyPrint,
         getRoot,
+        find,
     };
 }
