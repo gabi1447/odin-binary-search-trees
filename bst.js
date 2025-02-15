@@ -128,6 +128,28 @@ function Tree(array) {
         return findMin(treeNodeRight.left);
     }
 
+    function levelOrder() {
+        if (root === null) {
+            return;
+        }
+        let queue = [];
+        queue.push(root);
+
+        while (queue.length !== 0) {
+            const firstNode = queue[0];
+            console.log(firstNode.data);
+            if (firstNode.left !== null) {
+                queue.push(queue[0].left);
+            }
+
+            if (firstNode.right !== null) {
+                queue.push(queue[0].right);
+            }
+
+            queue.shift();
+        }
+    }
+
     function prettyPrint(node, prefix = "", isLeft = true) {
         if (node === null) {
             return;
@@ -156,5 +178,6 @@ function Tree(array) {
         insert,
         deleteItem,
         findMin,
+        levelOrder,
     };
 }
