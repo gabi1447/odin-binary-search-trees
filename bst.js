@@ -91,6 +91,43 @@ function Tree(array) {
         }
     }
 
+    function deleteItem(rootNode, value) {
+        if (rootNode === null) {
+            return rootNode;
+        } else if (value < rootNode.data) {
+            rootNode.left = deleteItem(rootNode.left, value);
+        } else if (value > rootNode.data) {
+            rootNode.right = deleteItem(rootNode.right, value);
+        } else {
+            // Case 1: No Child
+            if (rootNode.left === null && rootNode.right === null) {
+                rootNode = null;
+            }
+            // Case 2: One child
+            else if (rootNode.left === null) {
+                rootNode = rootNode.right;
+            } else if (rootNode.right === null) {
+                rootNode = rootNode.left;
+            }
+            // Case 3: Two childs
+            else {
+                const temp = findMin(rootNode.right);
+                rootNode.data = temp.data;
+                rootNode.right = deleteItem(rootNode.right, temp.data);
+            }
+        }
+
+        return rootNode;
+    }
+
+    function findMin(treeNodeRight) {
+        if (treeNodeRight.left === null) {
+            return treeNodeRight;
+        }
+
+        return findMin(treeNodeRight.left);
+    }
+
     function prettyPrint(node, prefix = "", isLeft = true) {
         if (node === null) {
             return;
@@ -117,5 +154,7 @@ function Tree(array) {
         getRoot,
         find,
         insert,
+        deleteItem,
+        findMin,
     };
 }
