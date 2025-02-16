@@ -191,6 +191,25 @@ function Tree(array) {
         callback(root.data);
     }
 
+    function depth(node) {
+        let currentNode = root;
+        let depth = 0;
+
+        while (currentNode !== null) {
+            if (node.data < currentNode.data) {
+                currentNode = currentNode.left;
+                depth++;
+            } else if (node.data > currentNode.data) {
+                currentNode = currentNode.right;
+                depth++;
+            } else {
+                return depth;
+            }
+        }
+
+        return -1;
+    }
+
     function rebalance() {
         let treeNodeSorted = [];
         inOrder(root, (value) => {
@@ -231,6 +250,7 @@ function Tree(array) {
         preOrder,
         inOrder,
         postOrder,
+        depth,
         rebalance,
     };
 }
