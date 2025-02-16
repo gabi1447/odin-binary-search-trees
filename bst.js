@@ -128,22 +128,26 @@ function Tree(array) {
         return findMin(treeNodeRight.left);
     }
 
-    function levelOrder() {
+    function levelOrder(callback) {
         if (root === null) {
             return;
+        } else if (typeof callback !== "function") {
+            throw new Error("A callback needs to be provided for execution");
         }
+
         let queue = [];
         queue.push(root);
 
         while (queue.length !== 0) {
             const firstNode = queue[0];
-            console.log(firstNode.data);
+            callback(firstNode.data);
+            /* console.log(firstNode.data); */
             if (firstNode.left !== null) {
-                queue.push(queue[0].left);
+                queue.push(firstNode.left);
             }
 
             if (firstNode.right !== null) {
-                queue.push(queue[0].right);
+                queue.push(firstNode.right);
             }
 
             queue.shift();
