@@ -191,6 +191,14 @@ function Tree(array) {
         callback(root.data);
     }
 
+    function height(node) {
+        if (node === null) {
+            return -1;
+        }
+
+        return 1 + Math.max(height(node.left), height(node.right));
+    }
+
     function depth(node) {
         let currentNode = root;
         let depth = 0;
@@ -250,6 +258,7 @@ function Tree(array) {
         preOrder,
         inOrder,
         postOrder,
+        height,
         depth,
         rebalance,
     };
