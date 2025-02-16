@@ -141,7 +141,6 @@ function Tree(array) {
         while (queue.length !== 0) {
             const firstNode = queue[0];
             callback(firstNode.data);
-            /* console.log(firstNode.data); */
             if (firstNode.left !== null) {
                 queue.push(firstNode.left);
             }
@@ -152,6 +151,18 @@ function Tree(array) {
 
             queue.shift();
         }
+    }
+
+    function preOrder(root, callback) {
+        if (typeof callback !== "function") {
+            throw new Error("A callback needs to be provided for execution");
+        } else if (root === null) {
+            return;
+        }
+
+        callback(root.data);
+        preOrder(root.left, callback);
+        preOrder(root.right, callback);
     }
 
     function prettyPrint(node, prefix = "", isLeft = true) {
@@ -183,5 +194,6 @@ function Tree(array) {
         deleteItem,
         findMin,
         levelOrder,
+        preOrder,
     };
 }
