@@ -238,21 +238,3 @@ function Tree(array) {
 const array = [
     1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324, 456, 765, 5, 9, 20, 45, 55,
 ];
-
-const bst = Tree(array);
-
-bst.insert(34);
-bst.insert(7);
-bst.insert(58);
-bst.insert(11);
-bst.insert(59);
-bst.insert(155);
-bst.insert(156);
-bst.insert(238);
-bst.insert(33);
-
-bst.prettyPrint(bst.getRoot());
-
-bst.rebalance();
-
-bst.prettyPrint(bst.getRoot());
