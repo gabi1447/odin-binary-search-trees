@@ -165,6 +165,30 @@ function Tree(array) {
         preOrder(root.right, callback);
     }
 
+    function inOrder(root, callback) {
+        if (typeof callback !== "function") {
+            throw new Error("A callback needs to be provided for execution");
+        } else if (root === null) {
+            return;
+        }
+
+        inOrder(root.left, callback);
+        callback(root.data);
+        inOrder(root.right, callback);
+    }
+
+    function postOrder(root, callback) {
+        if (typeof callback !== "function") {
+            throw new Error("A callback needs to be provided for execution");
+        } else if (root === null) {
+            return;
+        }
+
+        postOrder(root.left, callback);
+        postOrder(root.right, callback);
+        callback(root.data);
+    }
+
     function prettyPrint(node, prefix = "", isLeft = true) {
         if (node === null) {
             return;
@@ -195,5 +219,7 @@ function Tree(array) {
         findMin,
         levelOrder,
         preOrder,
+        inOrder,
+        postOrder,
     };
 }
