@@ -12,7 +12,7 @@ function Node(value) {
     };
 }
 
-function Tree(array) {
+export function Tree(array) {
     let sortedArray = sortUnorderedArray(array);
     let root = buildTree(sortedArray, 0, sortedArray.length - 1);
 
