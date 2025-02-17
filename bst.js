@@ -218,6 +218,30 @@ function Tree(array) {
         return -1;
     }
 
+    function isSubtreeBalanced(node) {
+        if (node === null) {
+            return true;
+        }
+        const leftSubtreeHeight = node.left === null ? 0 : height(node.left);
+        const rightSubtreeHeight = node.right === null ? 0 : height(node.right);
+
+        const diff = Math.abs(leftSubtreeHeight - rightSubtreeHeight);
+
+        return diff > 1 ? false : true;
+    }
+
+    function isBalanced(node) {
+        if (node === null) {
+            return true;
+        }
+
+        if (isSubtreeBalanced(node.left) && isSubtreeBalanced(node.right)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     function rebalance() {
         let treeNodeSorted = [];
         inOrder(root, (value) => {
@@ -260,6 +284,8 @@ function Tree(array) {
         postOrder,
         height,
         depth,
+        isSubtreeBalanced,
+        isBalanced,
         rebalance,
     };
 }
